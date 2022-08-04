@@ -39,9 +39,14 @@ namespace RLHerrera.AppModelo.Site
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddDefaultIdentity<IdentityUser>()
-                //.AddDefaultUI(UIFramework.Bootstrap4)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddAuthentication(options =>
+            //{
+            //    options.AddPolicy("PodeExcluir", policy => policy.RequireClaim("PodeExcluir"));
+            //});
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
